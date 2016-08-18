@@ -113,7 +113,9 @@ IF(USE_PYTHON)
     create_symlinks(${python_source_files})
     
     SET(python_cxxs "${core_source};${io_source};${model_source};${utils_source}")
-    ADD_LIBRARY(_singa_wrap SHARED "${python_srcs} ${python_cxxs} ${cuda_objs}")
+
+    MESSAGE(STATUS "python_cxxs ${python_cxxs}")
+    ADD_LIBRARY(_singa_wrap SHARED "${python_srcs};${python_cxxs};${cuda_objs}")
     SET(WRAPPER_LINKER_LIBS "${PREVIOUS_LINKER_LIBS}")
     TARGET_LINK_LIBRARIES(_singa_wrap ${WRAPPER_LINKER_LIBS})
     TARGET_INCLUDE_DIRECTORIES(_singa_wrap PRIVATE ${PYTHON_INCLUDE_DIRS})
